@@ -4,7 +4,8 @@ const PORT = process.env.PORT || 3001;
 const app = express();
 var counter = 0;
 app.get("/counter", (req, res) => {
-    res.send('{ "counter" : ' +counter+ ' }');
+    //res.send('{ "counter" : ' +counter+ ' }');
+    res.json({ counter: counter });
     counter++;
 });
 app.get("/api", (req, response) => {

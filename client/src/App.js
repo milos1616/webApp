@@ -13,11 +13,11 @@ function App() {
         console.log(data);
       });
     fetch('/api')
-      .then(res => res.json())
+     .then(res => res.json())
       .then(data => {
-        setCocktail(data.drinks[0].strDrinkThumb);
+        setCocktail(data);
         console.log(data);
-      });
+      });    
   }, []);
   return (
     <div className="App">
@@ -26,12 +26,17 @@ function App() {
         <p>
           {counter}
         </p>
-        <p>
-          <img 
-            src={cocktail}
-            alt="cocktail picture"
-          />
-        </p>
+        <button onClick={() => {
+          fetch('/api')
+            .then(res => res.json())
+             .then(data => {
+               setCocktail(data);
+               console.log(data);
+             });
+          }}>
+          Cocktail Picture
+        </button>
+        <img src={cocktail === null ? "https://1gr.cz/fotky/idnes/17/071/org/ZT6c728d_131820_2861019.jpg" : cocktail.drinks[0].strDrinkThumb} width={400} />
       </header>
     </div>
   );
